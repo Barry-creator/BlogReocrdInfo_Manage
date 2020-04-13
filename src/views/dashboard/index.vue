@@ -2,7 +2,7 @@
   <div class="dashboard-container">
     <div class="dashboard-div">
       <el-row>
-        <el-col :span="4">
+        <el-col :span="3">
           <div class="person-header-div">
             <span class="svg-container">
               <svg-icon
@@ -66,6 +66,48 @@
         </el-col>
       </el-row>
     </div>
+    <div class="num_desc_box">
+      <div class="mouth_count_box">
+        <div>
+          <label>
+            <span>4</span>
+            <span>月</span>
+          </label>
+          <div>
+            <span class="diff_act">30</span><span>篇</span>
+          </div>
+        </div>
+        <div style="border:0" />
+      </div>
+      <div class="list_article">
+        <el-divider content-position="left">最近发布</el-divider>
+        <el-table
+          :data="tableData"
+          style="width: 100%"
+          :show-header="false"
+        >
+          <el-table-column
+            prop="date"
+            label="日期"
+            width="180"
+          >
+            <template slot-scope="scope">
+              <i class="el-icon-time" />
+              <span style="margin-left: 10px">{{ scope.row.date }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="name"
+            label="姓名"
+            width="180"
+          />
+          <el-table-column
+            prop="address"
+            label="地址"
+          />
+        </el-table>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -74,6 +116,27 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Dashboard',
+  data() {
+    return {
+      tableData: [{
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }]
+    }
+  },
   computed: {
     ...mapGetters([
       'name'
@@ -109,6 +172,7 @@ export default {
   }
   .person-header-div {
     text-align: center;
+    width: 100px;
     .person-header {
       width: 100px;
       height: 100px;
@@ -121,7 +185,44 @@ export default {
     padding-top: 10px;
   }
   .btn-box {
-    padding: 20px 56px 0;
+    padding: 20px 0;
+  }
+}
+.num_desc_box {
+  width: 100%;
+  height: 400px;
+  border: 1px solid #ccc;
+  .mouth_count_box {
+    width: 30%;
+    height: 100%;
+    border-right: 1px solid #ccc;
+    float: left;
+    > div {
+      margin: 0 20px;
+      border-bottom: 1px solid #ccc;
+      height: 48%;
+      label {
+        display: block;
+        padding: 10px 0;
+        color: #ccc;
+      }
+      .diff_act {
+        color: yellowgreen;
+        font-size: 18px;
+      }
+      .diff_act + span {
+        font-size: 13px;
+      }
+    }
+  }
+  .list_article {
+    width: 65%;
+    height: 400px;
+    float: left;
+    padding-left: 20px;
+    tr {
+      height: 30px;
+    }
   }
 }
 </style>

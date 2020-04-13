@@ -33,8 +33,8 @@
           <svg-icon icon-class="password" />
         </span>
         <el-input
-          :key="passwordType"
           ref="password"
+          :key="passwordType"
           v-model="loginForm.password"
           :type="passwordType"
           placeholder="密码"
