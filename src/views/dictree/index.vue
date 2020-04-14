@@ -29,16 +29,6 @@
           :model="treeForm"
         >
           <el-form-item
-            label="所属父类"
-            label-width="100px"
-          >
-            <el-input
-              v-model="onval"
-              placeholder=""
-              disabled="disabled"
-            />
-          </el-form-item>
-          <el-form-item
             label="类别名称"
             label-width="100px"
             required
@@ -137,7 +127,8 @@ export default {
       return data.label.indexOf(value) !== -1
     },
     showform(data, node, dom) {
-      if (node.level !== 1) {
+      // debugger
+      if (!node.childNodes || node.childNodes.length === 0) {
         // debugger
         this.onval = data
         this.treeForm.dicCode = data.id
@@ -145,8 +136,9 @@ export default {
       }
     },
     append(data) {
-      debugger
-      const newChild = { id: data.dicCode++, label: 'testtest', children: [] }
+      // debugger
+      this.treeForm.dicCode = data.dicCode++
+      const newChild = { id: this.treeForm.dicCode, label: this.treeForm.dicMean, children: [] }
       if (!data.children) {
         this.$set(data, 'children', [])
       }
