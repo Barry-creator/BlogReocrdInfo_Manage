@@ -76,13 +76,13 @@ export const constantRoutes = [{
     },
     children: [
       /* {
-                  path: 'article/index',
-                  component: () => import('@/views/articleinfo/article/index'),
-                  meta: {
-                    title: '文章发布',
-                    icon: 'table'
-                  }
-                },*/
+                                                            path: 'article/index',
+                                                            component: () => import('@/views/articleinfo/article/index'),
+                                                            meta: {
+                                                              title: '文章发布',
+                                                              icon: 'table'
+                                                            }
+                                                          },*/
       {
         path: 'message/index',
         component: () => import('@/views/articleinfo/message/index'),
@@ -105,6 +105,23 @@ export const constantRoutes = [{
     path: '*',
     redirect: '/404',
     hidden: true
+  },
+  {
+    path: '/log',
+    component: Layout,
+    redirect: '/log/operation',
+    meta: {
+      title: '日志查询',
+      icon: 'table'
+    },
+    children: [{
+      path: 'operation',
+      component: () => import('@/views/log/operation'),
+      meta: {
+        title: '操作日志',
+        icon: 'table'
+      }
+    }]
   }
 ]
 
